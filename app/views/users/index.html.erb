@@ -1,0 +1,22 @@
+<h3>User Finding</h3>
+<%= form_tag('/users', method: 'get') do %>
+  <%= label_tag(:user_id, 'User ID:') %>
+  <%= text_field_tag(:user_id) %>
+  <%= submit_tag('Find') %>
+<% end %>
+
+<% if @error %>
+  <h3>Not Found!</h3>
+<% end %>
+
+<% if @user %>
+  <h3>User Found</h3>
+  Name: <%= @user.name %><br/>
+  Accounts:
+  <ul>
+  <% @user.accounts.each do |account| %>
+    <li><%= "#{account.name} (#{account.balance})" %></li>
+  <% end %>
+  </ul>
+<% end %>
+
